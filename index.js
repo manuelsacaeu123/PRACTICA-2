@@ -17,10 +17,14 @@ let librosBiblicos = [
 ];
 //manejo de json
 app.use(express.json());
- 
+
 // Endpoint de bienvenida
 app.get('/bienvenida', (req, res) => {
     res.send('Hola Soy Manuel Saca Eulate y actualmente soy Técnico en Telecomunicaciones \n Hola Soy Marco Antonio Villca Quispe y actualmente soy Técnico en Informática y computacion');
+});
+//endpoint para obtener todos los libros
+app.get('/libros', (req, res) =>{
+    res.json(librosBiblicos);
 });
 
 // Obtener libros por autor
