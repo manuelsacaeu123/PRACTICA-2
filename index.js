@@ -7,12 +7,17 @@ let librosBiblicos = [
     { id: 1, nombre: 'Genesis', autor: 'Moises' },
     { id: 2, nombre: 'Exodo', autor: 'Moises' },
     { id: 3, nombre: 'Levitico', autor: 'Moises' },
-    { id: 4, nombre: 'Juan', autor: 'Juan' },
-    { id: 5, nombre: 'Juan 2', autor: 'Juan' },
+    { id: 4, nombre: 'Deuteronomio', autor: 'Moises' },
+    { id: 5, nombre: 'Numeros', autor: 'Moises' },
+    { id: 6, nombre: 'Juan', autor: 'Juan' },
+    { id: 7, nombre: 'Juan 2', autor: 'Juan' },
+    { id: 8, nombre: 'Juan 3', autor: 'Juan'},
+    { id: 9, nombre: 'Judas', autor: 'Judas'},
+    { id: 10, nombre: 'Apocalipsis', autor: 'Juan'}
 ];
 
 app.use(express.json());
-
+ 
 // Endpoint de bienvenida
 app.get('/bienvenida', (req, res) => {
     res.send('Hola Soy Manuel Saca Eulate y actualmente soy Técnico en Telecomunicaciones \n Hola Soy Marco Antonio Villca Quispe y actualmente soy Técnico en Informática y computacion');
