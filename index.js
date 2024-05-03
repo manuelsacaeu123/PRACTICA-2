@@ -1,6 +1,6 @@
 const express = require('express');
 const app = express();
-const PORT = 3000;
+const PORT = 3000; //Como se indico en clase es el puerto donde se puede acceder a la aplicacion y puede ser variante
 
 let librosBiblicos = [
     { id: 1, nombre: 'Genesis', autor: 'Moises' },
