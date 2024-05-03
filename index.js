@@ -15,7 +15,7 @@ let librosBiblicos = [
     { id: 9, nombre: 'Judas', autor: 'Judas'},
     { id: 10, nombre: 'Apocalipsis', autor: 'Juan'}
 ];
-
+//manejo de json
 app.use(express.json());
  
 // Endpoint de bienvenida
