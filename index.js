@@ -14,7 +14,7 @@ app.use(express.json());
 
 // Endpoint de bienvenida
 app.get('/bienvenida', (req, res) => {
-    res.send('Hola Soy Manuel Saca Eulate y actualmente soy Técnico en Telecomunicaciones \n Hola Soy Marco Antonio Villca y actualmente soy Técnico en Informática');
+    res.send('Hola Soy Manuel Saca Eulate y actualmente soy Técnico en Telecomunicaciones \n Hola Soy Marco Antonio Villca Quispe y actualmente soy Técnico en Informática y computacion');
 });
 
 // Obtener libros por autor
