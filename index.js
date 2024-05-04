@@ -28,7 +28,7 @@ app.get('/libros', (req, res) =>{
 });
 
 // Obtener libros por autor
-app.get('/libros/:autor', (req, res) => {
+app.get('/libros/autor/:autor', (req, res) => {
     const autorCapturado = req.params.autor;
     console.log(autorCapturado);
     const librosPorAutor = librosBiblicos.filter(libro => libro.autor === autorCapturado);
@@ -40,15 +40,15 @@ app.get('/libros/:autor', (req, res) => {
 });
 
 // Obtener la cantidad total de libros
-app.get('/libros/cantidad-total', (req, res) => {
+app.get('/libros/cantidad', (req, res) => {
     const cantidadTotal = librosBiblicos.length;
-    res.json({ cantidadTotal: cantidadTotal });
+    res.json({ cantidadTotal:   cantidadTotal});
 });
 
 // Obtener libros por nombre que contenga el texto "Juan"
 app.get('/libros/nombre/:nombre', (req, res) => {
     const nombre = req.params.nombre;
-    const librosConNombreJuan = librosBiblicos.filter(libro => libro.nombre.includes(nombre));
+    const librosConNombreJuan = librosBiblicos.filter(libro => libro.nombre.includes(nombre) || libro.autor.includes(nombre));
     res.json(librosConNombreJuan);
 });
 
