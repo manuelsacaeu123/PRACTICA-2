@@ -13,14 +13,22 @@ let librosBiblicos = [
     { id: 7, nombre: 'Juan 2', autor: 'Juan' },
     { id: 8, nombre: 'Juan 3', autor: 'Juan'},
     { id: 9, nombre: 'Judas', autor: 'Judas'},
+<<<<<<< HEAD
     { id: 10, nombre: 'Juan', autor: 'Juan'}
+=======
+    { id: 10, nombre: 'Apocalipsis', autor: 'Juan'}
+>>>>>>> 364964edf9ef0b526190918d7d3b9056d8def30a
 ];
 //manejo de json
 app.use(express.json());
 
 // Endpoint de bienvenida
 app.get('/bienvenida', (req, res) => {
+<<<<<<< HEAD
     res.send('Hola Soy Jose Manuel Saca Eulate y actualmente soy Técnico en Telecomunicaciones \n Hola Soy Marco Antonio Villca Quispe y actualmente soy Técnico en Informática y computacion');
+=======
+    res.send('Hola Soy Manuel Saca Eulate y actualmente soy Técnico en Telecomunicaciones \n Hola Soy Marco Antonio Villca Quispe y actualmente soy Técnico en Informática y computacion');
+>>>>>>> 364964edf9ef0b526190918d7d3b9056d8def30a
 });
 //endpoint para obtener todos los libros
 app.get('/libros', (req, res) =>{
