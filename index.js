@@ -28,10 +28,15 @@ app.get('/libros', (req, res) =>{
 });
 
 // Obtener libros por autor
-app.get('/libros/autor/:autor', (req, res) => {
-    const autor = req.params.autor;
-    const librosPorAutor = librosBiblicos.filter(libro => libro.autor === autor);
-    res.json(librosPorAutor);
+app.get('/libros/:autor', (req, res) => {
+    const autorCapturado = req.params.autor;
+    console.log(autorCapturado);
+    const librosPorAutor = librosBiblicos.filter(libro => libro.autor === autorCapturado);
+    if (librosPorAutor.length > 0) {
+        res.json(librosPorAutor);
+    } else {
+        res.status(404).json ({mensaje : 'El Autor no se encuentra'});
+    }
 });
 
 // Obtener la cantidad total de libros
