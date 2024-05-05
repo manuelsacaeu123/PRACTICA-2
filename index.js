@@ -78,7 +78,7 @@ app.get('/libros/nombre/:nombre', (req, res) => {
 
 
 
-// Ordenar libros por nombre
+// ENDPOINT 5 - Ordenar libros por nombre
 app.get('/libros/ordenar-por-nombre', (req, res) => {
     // Ordenar los libros alfabéticamente
     const librosOrdenados = librosBiblicos.sort((a, b) => a.nombre.localeCompare(b.nombre));
