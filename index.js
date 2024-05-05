@@ -2,7 +2,7 @@ const express = require('express');
 const app = express();
 const PORT = 3000; //Como se indico en clase es el puerto donde se puede acceder a la aplicacion y puede ser variante
 
-//array
+//array DE libros
 let librosBiblicos = [
     { id: 1, nombre: 'Genesis', autor: 'Moises' },
     { id: 2, nombre: 'Exodo', autor: 'Moises' },
@@ -11,23 +11,27 @@ let librosBiblicos = [
     { id: 5, nombre: 'Numeros', autor: 'Moises' },
     { id: 6, nombre: 'Juan', autor: 'Juan' },
     { id: 7, nombre: 'Juan 2', autor: 'Juan' },
-    { id: 8, nombre: 'Juan 3', autor: 'Juan'},
-    { id: 9, nombre: 'Judas', autor: 'Judas'},
-    { id: 10, nombre: 'Apocalipsis', autor: 'Juan'}
+    { id: 8, nombre: 'Juan 3', autor: 'Juan' },
+    { id: 9, nombre: 'Judas', autor: 'Judas' },
+    { id: 10, nombre: 'Apocalipsis', autor: 'Juan' }
 ];
 //manejo de json
 app.use(express.json());
 
-// Endpoint de bienvenida
+
+// ENDPOINT 1 - de bienvenida
 app.get('/bienvenida', (req, res) => {
-    res.send('Hola Soy Manuel Saca Eulate y actualmente soy Técnico en Telecomunicaciones \n Hola Soy Marco Antonio Villca Quispe y actualmente soy Técnico en Informática y computacion');
+    res.send('Hola Soy Manuel Saca Eulate y actualmente soy Técnico en Telecomunicaciones \nHola Soy Marco Antonio Villca Quispe y actualmente soy Técnico en Informática y computacion');
 });
-//endpoint para obtener todos los libros
-app.get('/libros', (req, res) =>{
+
+
+//endpoint para obtener todos los libros - para practicar
+app.get('/libros', (req, res) => {
     res.json(librosBiblicos);
 });
 
-// Obtener libros por autor
+
+// ENPOINT 2 - Obtener libros por autor
 app.get('/libros/autor/:autor', (req, res) => {
     const autorCapturado = req.params.autor;
     console.log(autorCapturado);
@@ -35,28 +39,53 @@ app.get('/libros/autor/:autor', (req, res) => {
     if (librosPorAutor.length > 0) {
         res.json(librosPorAutor);
     } else {
-        res.status(404).json ({mensaje : 'El Autor no se encuentra'});
+        res.status(404).json({ mensaje: 'El Autor no se encuentra' });
     }
 });
 
-// Obtener la cantidad total de libros
+
+// ENDPOINT 3 - Obtener la cantidad total de libros
 app.get('/libros/cantidad', (req, res) => {
     const cantidadTotal = librosBiblicos.length;
-    res.json({ cantidadTotal:   cantidadTotal});
+
+    if (cantidadTotal === 0) {
+        res.status(404).json({ mensaje: 'No hay libros disponibles' });
+        return;
+    }
+
+    res.json({ cantidadTotal });
 });
 
-// Obtener libros por nombre que contenga el texto "Juan"
+
+
+// ENDPOINT 4 - Obtener libros por nombre que contenga el texto "Juan"
 app.get('/libros/nombre/:nombre', (req, res) => {
     const nombre = req.params.nombre;
-    const librosConNombreJuan = librosBiblicos.filter(libro => libro.nombre.includes(nombre) || libro.autor.includes(nombre));
-    res.json(librosConNombreJuan);
+    if (!nombre || nombre.trim() === "") {
+        return res.status(400).json({ mensaje: 'Debe especificar un nombre válido' });
+    }
+    // ponemos en minusculas
+    const librosBuscado = librosBiblicos.filter(libro =>
+        libro.nombre.toLowerCase().includes(nombre.toLowerCase())
+    );
+    // Verificar si se encontraron libros 
+    if (librosBuscado.length === 0) {
+        return res.status(404).json({ mensaje: 'No se encontraron libros que coincidan con el nombre proporcionado' });
+    }
+    // Devolver los libros encontrados
+    res.json(librosBuscado);
 });
+
+
 
 // Ordenar libros por nombre
 app.get('/libros/ordenar-por-nombre', (req, res) => {
+    // Ordenar los libros alfabéticamente
     const librosOrdenados = librosBiblicos.sort((a, b) => a.nombre.localeCompare(b.nombre));
+    
     res.json(librosOrdenados);
 });
+
 
 app.listen(PORT, () => {
     console.log("Servidor corriendo en el puerto http://localhost:" + PORT);
